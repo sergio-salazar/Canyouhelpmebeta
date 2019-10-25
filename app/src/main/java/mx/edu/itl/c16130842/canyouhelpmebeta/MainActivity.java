@@ -29,12 +29,13 @@ public class MainActivity extends AppCompatActivity {
     SensorManager sensorManager;
     Sensor sensor;
     SensorEventListener sensorEventListener;
-    int whip = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.getSupportActionBar().hide();
 
         grabar = (TextView) findViewById(R.id.txtGrabarVoz);
 
@@ -47,16 +48,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 float x = sensorEvent.values[0];
-                System.out.println("valor giro: " + x);
-                if (x < -5 && whip == 0) {
-                    whip++;
+                float y = sensorEvent.values[1];
+                float z = sensorEvent.values[2];
+                System.out.println("valor giro: " + y);
+                if (y < -5) {
                     getWindow().getDecorView().setBackgroundColor(Color.BLUE);
-                } else if (x > 5 && whip == 1) {
-                    whip++;
+                } else if (y > 5) {
                     getWindow().getDecorView().setBackgroundColor(Color.RED);
-                }
-                if (whip == 2) {
-                    whip = 0;
                 }
             }
 
@@ -135,9 +133,5 @@ public class MainActivity extends AppCompatActivity {
         PackageManager.PERMISSION_GRANTED)
             return;
         startActivity(intent);
-    }
-
-    public void prueba() {
-        
     }
 }
