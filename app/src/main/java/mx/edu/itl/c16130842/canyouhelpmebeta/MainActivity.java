@@ -19,6 +19,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     SensorManager sensorManager;
     Sensor sensor;
     SensorEventListener sensorEventListener;
+
+    DatabaseReference databaseReference;
+    //DatabaseReference myRootChild = databaseReference.child("texto");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 float z = sensorEvent.values[2];
                 System.out.println("valor giro: " + y);
                 if (y < -5) {
-                    getWindow().getDecorView().setBackgroundColor(Color.BLUE);
+                    //getWindow().getDecorView().setBackgroundColor(Color.BLUE);
                 } else if (y > 5) {
-                    getWindow().getDecorView().setBackgroundColor(Color.RED);
+                    //getWindow().getDecorView().setBackgroundColor(Color.RED);
                 }
             }
 
@@ -133,5 +142,34 @@ public class MainActivity extends AppCompatActivity {
         PackageManager.PERMISSION_GRANTED)
             return;
         startActivity(intent);
+    }
+
+    public void btnConfiguracionOnClick(View view) {
+        Intent intent = new Intent(MainActivity.this, ConfiguracionActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void btnMedicamentosOnClick(View view) {
+        Intent intent = new Intent(MainActivity.this, MedicamentosActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        /*myRootChild.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String texto = dataSnapshot.getValue().toString();
+                grabar.setText(texto);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
     }
 }
