@@ -3,6 +3,7 @@
     package="mx.edu.itl.c16130842.canyouhelpmebeta">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <uses-feature
         android:name="android.hardware.sensor.accelerometer"
@@ -16,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
+        <activity android:name=".CapturaMedicamentosActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +38,11 @@
         </service>
 
         <activity android:name=".ConfiguracionActivity" />
-        <activity android:name=".MedicamentosActivity"></activity>
+        <activity
+            android:name=".Main2Activity"
+            android:label="@string/title_activity_llamada" />
+        <activity android:name=".CapturaMedicamentosActivity"/>
+        <activity android:name=".ListadoMedicamentosActivity"/>
     </application>
 
 </manifest>
