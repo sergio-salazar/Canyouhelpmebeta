@@ -1,5 +1,11 @@
 package mx.edu.itl.c16130842.canyouhelpmebeta;
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.ContactsContract;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,11 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class ConfiguracionActivity extends AppCompatActivity {
 
@@ -20,10 +23,18 @@ public class ConfiguracionActivity extends AppCompatActivity {
     EditText tel1,tel2, tel3;
     EditText mensaje;
 
+    static final int REQUEST_SELECT_PHONE_NUMBER = 1;
+
+    private ContactsManager contacts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracion);
+
+        getSupportActionBar().hide();
+
+        contacts = new ContactsManager(this);
     }
 
     public void btnGuardarOnClick(View view) {
@@ -51,5 +62,80 @@ public class ConfiguracionActivity extends AppCompatActivity {
             databaseReference.child("mensaje").setValue(mensaje.getText().toString());
         }
         Toast.makeText(getApplicationContext(),"Datos guardados exitosamente", Toast.LENGTH_SHORT).show();
+    }
+
+    protected void btnContacto1OnClick(View view) {
+        /*Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, REQUEST_SELECT_PHONE_NUMBER);
+        }*/
+
+        //contacts.selectContact();
+
+        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        startActivityForResult(intent, REQUEST_SELECT_PHONE_NUMBER);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        /*if (requestCode == REQUEST_SELECT_PHONE_NUMBER && resultCode == RESULT_OK) {
+            Uri contactUri = data.getData();
+            String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER};
+            Cursor cursor = getContentResolver().query(contactUri, projection, null, null, null);
+            //tel1.setText(cursor.getString(0));
+            if (cursor != null && cursor.moveToFirst()) {
+                //int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                //int nameIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
+                //String number = cursor.getString(numberIndex);
+                //String name = cursor.getString(nameIndex);
+                //edtNombre1.setText("Hola");
+                tel1.setText(cursor.getString(0));
+            }
+        }*/
+
+        /*super.onActivityResult(requestCode, resultCode, data);
+        contacts.onActivityResult(requestCode, resultCode, data, new ContactsManager.onSelectedPhone() {
+            @Override
+            public void onSuccess(String phone) {
+                tel1.setText(phone);
+            }
+
+            @Override
+            public void onFailure() {
+                Toast.makeText(ConfiguracionActivity.this, "No funciona.", Toast.LENGTH_SHORT);
+            }
+        });*/
+
+        if (requestCode ==  REQUEST_SELECT_PHONE_NUMBER) {
+            if (resultCode == RESULT_OK) {
+
+            }
+        }
+    }
+
+    private void renderContact(Uri uri) {
+        edtNombre1.setText(getContactName(uri));
+    }
+
+    private String getContactName(Uri uri) {
+        String name = null;
+        ContentResolver contentResolver = getContentResolver();
+        Cursor cursor = contentResolver.query(uri, new String[]{ContactsContract.Contacts.DISPLAY_NAME}, null, null, null);
+        if (cursor.moveToFirst()) {
+            name = cursor.getString(0);
+        }
+        cursor.close();
+        return name;
+    }
+
+    protected void btnContacto2OnClick(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        startActivity(intent);
+    }
+
+    protected void btnContacto3OnClick(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        startActivity(intent);
     }
 }
