@@ -34,7 +34,10 @@
         android:layout_height="279dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:drawableTop="@drawable/ic_settings_black_170dp"
+        android:background="@android:color/holo_green_light"
+        android:drawableTop="@drawable/ic_local_hospital_green_170dp"
         android:paddingTop="40dp"
-        android:text="MEDICAMENTOS" />
+        android:text="MEDICAMENTOS"
+        android:textColor="#208302"
+        android:textSize="20sp" />
 </RelativeLayout>
