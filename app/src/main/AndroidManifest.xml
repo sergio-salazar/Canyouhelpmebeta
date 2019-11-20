@@ -16,8 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".CapturaMedicamentosActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,24 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service android:name=".FirebaseService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-        <service android:name=".MyService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-
-        <activity android:name=".ConfiguracionActivity" />
-        <activity
-            android:name=".Main2Activity"
-            android:label="@string/title_activity_llamada" />
-        <activity android:name=".CapturaMedicamentosActivity"/>
-        <activity android:name=".ListadoMedicamentosActivity"/>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
