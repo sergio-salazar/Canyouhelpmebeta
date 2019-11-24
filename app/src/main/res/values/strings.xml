@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Can you help me beta</string>
+    <string name="app_name">CAN YOU HELP ME?</string>
     <string name="can_you_help_me">CAN YOU HELP ME?</string>
     <string name="todo">TODO</string>
     <string name="title_activity_llamada">LlamadaActivity</string>
@@ -20,4 +20,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_configuracion">ConfiguracionActivity</string>
+    <string name="title_activity_contactos">ContactosActivity</string>
 </resources>
