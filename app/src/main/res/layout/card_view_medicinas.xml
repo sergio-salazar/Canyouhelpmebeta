@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/card_view"
     android:layout_margin="5dp"
-    card_view:cardBackgroundColor="#ffc61c"
+    card_view:cardBackgroundColor="#81C784"
     card_view:cardCornerRadius="12dp"
     card_view:cardElevation="3dp"
     card_view:contentPadding="4dp"
@@ -20,7 +20,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/imagen_llamada"
+            android:id="@+id/imagen_medicamento"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="16dp"/>
@@ -28,17 +28,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/nombre_contacto"
-            android:layout_toRightOf="@id/imagen_llamada"
+            android:id="@+id/titulo_medicamento"
+            android:layout_toRightOf="@id/imagen_medicamento"
             android:layout_alignParentTop="true"
             android:textSize="30dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/telefono_contacto"
-            android:layout_toRightOf="@id/imagen_llamada"
-            android:layout_below="@id/nombre_contacto"
+            android:id="@+id/dosis_medicamento"
+            android:layout_toRightOf="@id/imagen_medicamento"
+            android:layout_below="@id/titulo_medicamento"
             />
 
     </RelativeLayout>
