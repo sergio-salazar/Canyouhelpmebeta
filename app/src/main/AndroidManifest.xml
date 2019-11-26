@@ -28,7 +28,16 @@
         <activity
             android:name=".ContactosActivity"
             android:label="@string/title_activity_contactos"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".NuevoContactoActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".CapturaMedicamentosActivity" />
+        <activity android:name=".ListadoMedicamentosActivity" />
+        <activity android:name=".SMSActivity"></activity>
     </application>
 
 </manifest>
