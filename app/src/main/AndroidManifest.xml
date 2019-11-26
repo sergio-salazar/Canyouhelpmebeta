@@ -40,9 +40,6 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".CapturaMedicamentosActivity" />
-        <activity android:name=".ListadoMedicamentosActivity" />
-        <activity android:name=".SMSActivity"></activity>
     </application>
 
 </manifest>

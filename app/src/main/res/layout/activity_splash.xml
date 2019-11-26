@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorCuatro"
     tools:context=".SplashActivity">
 
     <TextView
@@ -17,7 +18,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/can_you_help_me"
-        android:textSize="36sp"
+        android:textColor="@color/colorUno"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:fontFamily="@font/monoton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +39,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:indeterminateTint="#2c4c59"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -53,7 +58,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:contentDescription="@string/todo"
-        android:src="@drawable/logo_beta"
+        android:src="@drawable/logo_splash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

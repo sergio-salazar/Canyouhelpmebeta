@@ -15,8 +15,8 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:layout_height="50dp"
+            android:background="@color/colorCinco"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <TextView
@@ -58,5 +58,12 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_person_add_white_24dp" />
+
+    <TextView
+        android:id="@+id/txvContactos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="TextView" />
 
 </android.support.design.widget.CoordinatorLayout>

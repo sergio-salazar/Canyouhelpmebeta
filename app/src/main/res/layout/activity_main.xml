@@ -1,44 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button2"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5">
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorTres"
+            android:drawableTop="@drawable/ic_local_hospital_blue_170dp"
+            android:onClick="btnMedicamentosOnClick"
+            android:paddingTop="40dp"
+            android:text="MEDICAMENTOS"
+            android:textColor="@color/colorUno"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorUno"
+            android:drawableTop="@drawable/ic_settings_blue_170dp"
+            android:onClick="btnConfiguracionOnClick"
+            android:paddingTop="40dp"
+            android:text="CONFIGURACION"
+            android:textColor="@color/colorCuatro"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="233dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:text="EMERGENCIA" />
+        android:layout_height="fill_parent"
+        android:layout_weight="0.5"
+        android:weightSum="0.5">
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="192dp"
-        android:layout_height="279dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:background="@android:color/holo_blue_dark"
-        android:drawableTop="@drawable/ic_settings_black_170dp"
-        android:paddingTop="40dp"
-        android:text="CONFIGURACION"
-        android:textColor="#021396"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/colorCinco"
+            android:drawableTop="@drawable/ic_ring_volume_red_170dp"
+            android:onClick="btnEmergenciaOnClick"
+            android:paddingTop="10dp"
+            android:text="EMERGENCIA"
+            android:textColor="#c50209"
+            android:textSize="30sp" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="192dp"
-        android:layout_height="279dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@android:color/holo_green_light"
-        android:drawableTop="@drawable/ic_local_hospital_green_170dp"
-        android:onClick="btnMedicamentosOnClick"
-        android:paddingTop="40dp"
-        android:text="MEDICAMENTOS"
-        android:textColor="#208302"
-        android:textSize="20sp" />
-</RelativeLayout>
+</LinearLayout>

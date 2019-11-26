@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnMedicamentosOnClick(View view) {
-        Intent intent = new Intent(MainActivity.this, ListadoMedicamentosActivity.class);
-        startActivity(intent);
+        /*Intent intent = new Intent(MainActivity.this, ListadoMedicamentosActivity.class);
+        startActivity(intent);*/
     }
 
     public void btnConfiguracionOnClick(View view) {
