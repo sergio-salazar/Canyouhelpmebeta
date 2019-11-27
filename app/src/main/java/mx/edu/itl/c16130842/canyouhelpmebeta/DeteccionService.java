@@ -68,14 +68,6 @@ public class DeteccionService extends Service {
             sensorManager.registerListener(this, acelerometro, SensorManager.SENSOR_DELAY_NORMAL);
             Log.i(TAG, "Registrados exitosamente");
             while (true) {
-                Log.i(TAG, "Escuchando");
-                try {
-                    synchronized (this) {
-                        wait(1000);
-                    }
-                } catch (InterruptedException e) {
-                    Log.i(TAG, "Algo nos interrumpió");
-                }
             }
         }
 
