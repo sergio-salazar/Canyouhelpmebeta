@@ -92,6 +92,7 @@ public class AdaptadorRecyclerViewContactos extends RecyclerView.Adapter<Adaptad
                             int position = getAdapterPosition();
                             contacto.eliminarContacto(contactos.get(position).getNombre(), contactos.get(position).getTelefono());
                             Toast.makeText(itemView.getContext(), "Se ha eliminado el contacto.", Toast.LENGTH_SHORT);
+                            new ViewHolder(v);
                         }
                     }).create().show();
                 }

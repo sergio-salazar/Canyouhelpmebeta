@@ -16,9 +16,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo_splash"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_splash"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SplashActivity">
@@ -35,11 +35,15 @@
             android:label="@string/title_activity_contactos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NuevoContactoActivity" />
-
+        <activity android:name=".ListadoMedicamentosActivity" />
+        <activity android:name=".CapturaMedicamentosActivity" />
+        <activity android:name=".SMSActivity" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
+        <service android:name=".DeteccionService"/>
+        <receiver android:name=".CaidasRecibidor"/>
+        <receiver android:name=".ReiniciadorServicio"/>
     </application>
 
 </manifest>

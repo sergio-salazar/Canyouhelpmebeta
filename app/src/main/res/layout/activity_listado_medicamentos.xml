@@ -4,7 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ContactosActivity">
+    tools:context=".ListadoMedicamentosActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_view"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -29,36 +35,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Medicamentos Registrados"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
                 android:textColor="@color/colorUno"
-                android:textSize="20dp"
-                android:text="Configuración de Contactos"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline" />
+                android:textSize="20dp" />
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_llamada"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="60dp" />
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-
-    <include
-        layout="@layout/content_contactos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <include layout="@layout/content_listado_medicamentos" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -67,13 +52,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="@color/colorUno"
-        app:srcCompat="@drawable/ic_person_add_white_24dp" />
-
-    <TextView
-        android:id="@+id/txvContactos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:text="TextView" />
+        app:srcCompat="@drawable/ic_playlist_add_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>
