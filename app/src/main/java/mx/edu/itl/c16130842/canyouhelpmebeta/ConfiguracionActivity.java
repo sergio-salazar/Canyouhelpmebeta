@@ -21,7 +21,8 @@ public class ConfiguracionActivity extends AppCompatActivity {
     }
 
     public void btnConfigurarMensajeOnClick(View view) {
-
+        Intent intent = new Intent(ConfiguracionActivity.this, SMSActivity.class);
+        startActivity(intent);
     }
 
 }
