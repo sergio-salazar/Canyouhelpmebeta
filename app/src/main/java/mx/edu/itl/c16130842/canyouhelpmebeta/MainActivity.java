@@ -1,3 +1,23 @@
+
+/*------------------------------------------------------------------------------------------
+:*                       INSTITUTO TECNOLOGICO DE LA LAGUNA
+:*                     INGENIERIA EN SISTEMAS COMPUTACIONALES
+:*                       GESTIÓN DE PROYECTOS DE SOFTWARE
+:*
+:*                   SEMESTRE: AGO-DIC/2019    HORA: 11-12 HRS
+:*
+:*                      Activity Main, manejador de la pantalla principal
+:*
+:*  Archivo     : MainActivity.java
+:*  Autor       : PPS
+:*  Compilador  : Android Studio 3.1.3
+:*  Descripción : Activity que sirve de punto de entrada a la interacción con el usuario.
+:*  nos permite que este navegue a diferentes puntos, además de solicitar permisos dinámicamente.
+:*
+:*  Fecha       Modificó             Motivo
+:*==========================================================================================
+:*  04/012/2019 Iván García Moreno   Comentarios
+:*------------------------------------------------------------------------------------------*/
 package mx.edu.itl.c16130842.canyouhelpmebeta;
 
 import android.Manifest;
@@ -71,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    
+    */
     @Override
     protected void onResume() {
         super.onResume();
