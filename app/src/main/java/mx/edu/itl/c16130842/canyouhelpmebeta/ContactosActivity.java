@@ -1,3 +1,22 @@
+/*------------------------------------------------------------------------------------------
+:*                       INSTITUTO TECNOLOGICO DE LA LAGUNA
+:*                     INGENIERIA EN SISTEMAS COMPUTACIONALES
+:*                       GESTIÓN DE PROYECTOS DE SOFTWARE
+:*
+:*                   SEMESTRE: AGO-DIC/2019    HORA: 11-12 HRS
+:*
+:*                       Activity encargado del despliegue de los contactos
+:*
+:*  Archivo     : ContactosActivity.java
+:*  Autor       : PPS
+:*  Compilador  : Android Studio 3.1.3
+:*  Descripción : Archivo JAVA encargado de manejar las interacciones con el 
+:*  layout contactos: muestra contactos, permite capturar nuevos y eliminar
+:*  contactos (máximo de tres).
+:*  Fecha       Modificó             Motivo
+:*==========================================================================================
+:*  04/012/2019 Iván García Moreno   Comentarios
+:*------------------------------------------------------------------------------------------*/
 package mx.edu.itl.c16130842.canyouhelpmebeta;
 
 import android.content.DialogInterface;
@@ -17,13 +36,21 @@ import java.util.ArrayList;
 
 public class ContactosActivity extends AppCompatActivity {
 
+    // Referencias necesarias para el RecyclerView
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private AdaptadorRecyclerViewContactos adapter;
+    // Referencia a la clase manejadora de base de datos
     ContactoSQLiteHelper contacto;
+    // Referencias a los TextView Nombre y Teléfono
     public TextView nombre;
     public TextView telefono;
 
+    /*
+     * Método onCreate: Inicializa la vista y da la opción de capturar más contactos
+     * siempre y cuando el número de los actuales no sea superior de tres. Para ello
+     * carga los contactos de la base de datos.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +89,11 @@ public class ContactosActivity extends AppCompatActivity {
         });
     }
 
+    /*
+     * Método para eliminar un contacto, es un botón de la aplicación. Avisa al usuario
+     * antes de lo que está a punto de hacer. En caso de que se proceda con aceptar,
+     * se llama al método correspondiente de eliminación en la BD.
+     */
     public void btnCerrarOnClick(final View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("ELIMINAR CONTACTO");
@@ -82,6 +114,10 @@ public class ContactosActivity extends AppCompatActivity {
         }).create().show();
     }
 
+    /*
+     * Método onResume: realiza las mismas tareas del OnCreate: carga los contactos
+     * y da la oportunidad de capturar nuevos.
+     */
     @Override
     protected void onResume() {
         super.onResume();
