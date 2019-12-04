@@ -43,8 +43,9 @@ public class Adaptador_RecyclerView_Medicamentos extends RecyclerView.Adapter<Ad
     }
 
 
-    /* Método inflador de los ViewHolder. Es llamado autómaticamente según tantos elementos haya, e infla
-     * el layout adecuado.
+    /* 
+     * Método inflador de los ViewHolder. Es llamado autómaticamente según tantos elementos haya (obtenido mediante
+     * getItemCount), e infla el layout adecuado.
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -53,7 +54,8 @@ public class Adaptador_RecyclerView_Medicamentos extends RecyclerView.Adapter<Ad
         return viewHolder;
     }
 
-    /* Método que es llamado autómaticamente conforme se van rellenando los RecyclerView de información
+    /* 
+     * Método que es llamado autómaticamente conforme se van rellenando los RecyclerView de información
      * se obtienen referencias a los elementos del ViewHolder (definido en tarjeta_medicina.xml) y se
      * rellenan con su información correspondiente
      */
@@ -83,7 +85,10 @@ public class Adaptador_RecyclerView_Medicamentos extends RecyclerView.Adapter<Ad
         notifyDataSetChanged();
     }
 
-    //Método que inicia el Activity CapturaMedicamentosActivity para actualizar el medicamento
+    /*
+     * Método que inicializa el Activity CapturaMedicamentosActivity, utilizando identificadores numéricos
+     * para que este sepa que es una operación de actualización y no de captura nueva.
+     */
     public void actualizarMedicamento(int posicion) {
         Intent i = new Intent(context, CapturaMedicamentosActivity.class);
         i.putExtra("OP", OPERACION_ACTUALIZACION);
@@ -91,19 +96,27 @@ public class Adaptador_RecyclerView_Medicamentos extends RecyclerView.Adapter<Ad
         context.startActivity(i);
     }
 
+    //Método que retorna la cantidad de medicamentos que tenemos para desplegar, es usado para saber cuantas cartas debe crear
     @Override
     public int getItemCount() {
         return Medicamentos.getMedicinas().size();
     }
 
+    /*
+     * Clase que nos permite reutilizar una misma vista, en este caso el CadView medicamentos
+     * Mediante esta clase el RecyclerView "clona" la vista
+     */
     class ViewHolder extends RecyclerView.ViewHolder {
-        //Referencias a los objetos del viewHolder
+        //Referencias a los objetos del viewHolder: un ImageView y dos TextView
         public ImageView imagen;
         public TextView titulo;
         public TextView dosis;
 
-        //Creación del objeto ViewHolder, obtenemos las referencias a sus items y configuramos un
-        //onClickListener para obtener su posición
+        /*
+         * Creación del objeto ViewHolder. Se obtienen las referencias a los elementos View
+         * dentro del layour con el que estamos trabajando y se pone un onClick listener
+         * para iniciar el proceso de actualización de medicamentos
+        */
         public ViewHolder(View itemView) {
             super(itemView);
             imagen = itemView.findViewById(R.id.imagen_medicamento);
