@@ -14,14 +14,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class NuevoContactoActivity extends AppCompatActivity {
-
+    // Referencias a las vistas necesarias
     EditText edtNombre;
     EditText edtTelefono;
     TextView txvEditar;
     Bundle extras;
+    // Cadenas que se despliegan
     String nombre, telefono, editar;
+    // Código para hacer la solicitud de obtener contactos existentes
     static final int REQUEST_SELECT_PHONE_NUMBER = 1;
 
+    /*
+     * Método onCreate: obtiene referencias a las cadenas y los 
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +46,20 @@ public class NuevoContactoActivity extends AppCompatActivity {
         txvEditar.setText(editar);
     }
 
+    /*
+     * Método que llama al startActivity for results para seleccionar un contacto nuevo, 
+     * mediante un intent programado como tal
+     */
     public void btnContactoExistenteOnClick(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
         intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
         startActivityForResult(intent, REQUEST_SELECT_PHONE_NUMBER);
     }
 
+    /*
+     * Método que es lamado autómaticamente por el sistema Android al regresar del results. Obtiene
+     * los datos del Uri que viene como resultado del intent.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SELECT_PHONE_NUMBER && resultCode == AppCompatActivity.RESULT_OK) {
@@ -60,6 +73,10 @@ public class NuevoContactoActivity extends AppCompatActivity {
         }
     }
 
+    /*
+     * Obtiene el nombre de un contacto mediante su Uri, consultándola en los Contactos, 
+     * el resultado es regresado en un cursor.
+     */
     public String getName(Uri uri) {
         String nombre = null;
         ContentResolver contentResolver = getContentResolver();
@@ -71,6 +88,10 @@ public class NuevoContactoActivity extends AppCompatActivity {
         return nombre;
     }
 
+    /*
+     * Obtiene el teléfono de un contacto mediante su Uri, consultándola en los Contactos, 
+     * el resultado es regresado en un cursor.
+     */
     public String getPhone(Uri uri) {
         String telefono = null;
         ContentResolver contentResolver = getContentResolver();
@@ -82,6 +103,12 @@ public class NuevoContactoActivity extends AppCompatActivity {
         return telefono;
     }
 
+    /*
+     * Método para guardar un contacto. Obtiene los datos y crea un objeto manejador de
+     * base de datos para actualizarlo. Mediante el texto en txvEditar revisa si es una 
+     * operación de actualización o de captura de un nuevo contacto y llama a los métodos
+     * correspondientes en la bae de datos.
+     */
     public void btnGuardarOnClick(View view) {
         String nombreContacto = edtNombre.getText().toString();
         String telefonoContacto = edtTelefono.getText().toString();
