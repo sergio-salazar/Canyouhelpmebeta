@@ -1,3 +1,23 @@
+/*------------------------------------------------------------------------------------------
+:*                       INSTITUTO TECNOLOGICO DE LA LAGUNA
+:*                     INGENIERIA EN SISTEMAS COMPUTACIONALES
+:*                       GESTIÓN DE PROYECTOS DE SOFTWARE
+:*
+:*                   SEMESTRE: AGO-DIC/2019    HORA: 11-12 HRS
+:*
+:*                      Activity Listador de Medicamentos
+:*
+:*  Archivo     : ListadoMedicamentosActivity.java
+:*  Autor       : PPS
+:*  Compilador  : Android Studio 3.1.3
+:*  Descripción : Activity entre cuyas funciones está el crear el recyclerView para el
+:*  despliegue de medicamentos, interactúa con el activity CapturaMedicamentosActivity
+:*  mediante un recyclerView
+:*
+:*  Fecha       Modificó             Motivo
+:*==========================================================================================
+:*  04/012/2019 Iván García Moreno   Comentarios
+:*------------------------------------------------------------------------------------------*/
 package mx.edu.itl.c16130842.canyouhelpmebeta;
 
 import android.content.Intent;
@@ -25,6 +45,11 @@ public class ListadoMedicamentosActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private Adaptador_RecyclerView_Medicamentos adapter;
 
+    /*
+     * Sobreescritura del método onCreate. Se crea e inicializa el recyclerView
+     * y se configura el onClickListener para capturar nuevos medicamentos. En caso
+     * de captura de nuevos medicamentos, se pasa el código de captura en el Bundle.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +68,8 @@ public class ListadoMedicamentosActivity extends AppCompatActivity {
         adapter = new Adaptador_RecyclerView_Medicamentos(ListadoMedicamentosActivity.this);
         recyclerView.setAdapter(adapter);
 
-        //Si se da click en el botón de nuevo, se abrirá la pantalla para capturar un nuevo
-        //medicamentos
+        // Si se da click en el botón de nuevo, se abrirá la pantalla para capturar un nuevo
+        // medicamentos
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,12 +85,13 @@ public class ListadoMedicamentosActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    // Al regresar de la captura, notificamos los cambios para que el adaptador se actualice
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         adapter.notificarCambios();
-
     }
 
+    // onDestroy, indicamos que no hay medicamentos cargados en memoria
     @Override
     protected void onDestroy() {
         Medicamentos.setMedicamentosCargados(false);
