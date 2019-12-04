@@ -1,3 +1,25 @@
+
+/*------------------------------------------------------------------------------------------
+:*                       INSTITUTO TECNOLOGICO DE LA LAGUNA
+:*                     INGENIERIA EN SISTEMAS COMPUTACIONALES
+:*                       GESTIÓN DE PROYECTOS DE SOFTWARE
+:*
+:*                   SEMESTRE: AGO-DIC/2019    HORA: 11-12 HRS
+:*
+:*                      Manejador de la base de datos
+:*
+:*  Archivo     : Medicinas_DB_Handler.java
+:*  Autor       : PPS
+:*  Compilador  : Android Studio 3.1.3
+:*  Descripción : Clase cuya responsabilidad es interactuar con la base de datos.
+:*  Cuenta con métodos para consultar un medicamento, todos, actualizarlo o 
+:*  eliminar un registro. Todos los métodos se manejan de manera segura, con bloques
+:*  try-catch-finally.
+:*
+:*  Fecha       Modificó             Motivo
+:*==========================================================================================
+:*  04/012/2019 Iván García Moreno   Comentarios
+:*------------------------------------------------------------------------------------------*/
 package mx.edu.itl.c16130842.canyouhelpmebeta;
 
 import android.content.ContentValues;
@@ -12,11 +34,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Medicinas_DB_Handler extends SQLiteOpenHelper {
+    // Número de versión de la BD, nos sirve para actualizar el esquema
     private static final int DATABASE_VERSION = 2;
+    // Nombre de la BD
     private static final String DATABASE_NAME = "medicinas.db";
+    // Nombre de la tabla
     private static final String TABLE_NAME = "medicinas";
 
-    //NOMBRES DE LAS TABLAS
+    // Nombre de la columna, tabla "medicinas"
     private static final String ID_COLUMN = "_id";
     private static final String NOMBRE_MEDICAMENTO_COLUMN = "nombre_medicamento";
     private static final String TIPO_COLUMN = "tipo";
@@ -29,11 +54,13 @@ public class Medicinas_DB_Handler extends SQLiteOpenHelper {
 
     private ArrayList<Medicamentos.Medicamento> misMedicamentos;
 
+    // Constructor de la BD
     public Medicinas_DB_Handler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    /* Método que crea la tabla cuando esto se ejecuta por primera vez. Solo se ejecutará una vez
+    /* 
+     * Método que crea la tabla cuando esto se ejecuta por primera vez. Solo se ejecutará una vez
      */
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -52,7 +79,8 @@ public class Medicinas_DB_Handler extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    /* Método para añadir un objeto medicamento que recibe. Retorna un booleano para saber si fue
+    /* 
+     * Método para añadir un objeto medicamento que recibe. Retorna un booleano para saber si fue
      * exitoso o no. Almacena todos los valores como String, para simplificar el proceso. El
      * método se encarga de las conversiones necesarias.
      */
@@ -80,7 +108,8 @@ public class Medicinas_DB_Handler extends SQLiteOpenHelper {
         return anadidoExitosamente;
     }
 
-    /* Método de consulta de un medicamento, recibe el nombre. Hace la consulta con base en el nombre
+    /* 
+     * Método de consulta de un medicamento, recibe el nombre. Hace la consulta con base en el nombre
      * crea el objeto medicamento y lo regresa en caso de que lo haya encontrado. En caso de que no lo
      * encuentre, retorna null. El método maneja todas las conversiones necesarias.
      */
@@ -112,7 +141,8 @@ public class Medicinas_DB_Handler extends SQLiteOpenHelper {
         }
     }
 
-    /* Método para actualizar un medicamento. Recibe un objeto de este tipo y lo busca por nombre.
+    /* 
+     * Método para actualizar un medicamento. Recibe un objeto de este tipo y lo busca por nombre.
      * Si lo encuentra, lo actualiza. Si no, no. Retorna un booleano para indicar si fue exitoso o no.
      */
     public boolean actualizaMedicamento(Medicamentos.Medicamento medicamento) {
@@ -147,7 +177,8 @@ public class Medicinas_DB_Handler extends SQLiteOpenHelper {
         return actualizadoExitosamente;
     }
 
-    /* Método que elimina un medicamento mediante el nombre. Revisa que exista y en caso afirmativo
+    /* 
+     * Método que elimina un medicamento mediante el nombre. Revisa que exista y en caso afirmativo
      * lo elimina. Regresa un booleano dependiendo de si tuvo exito o no.
      */
     public boolean eliminaMedicamento(String nombreMedicamento) {
@@ -172,7 +203,8 @@ public class Medicinas_DB_Handler extends SQLiteOpenHelper {
         return eliminadoExitosamente;
     }
 
-    /* Método que retorna todos los medicamentos que se tienen almacenados en la base de datos.
+    /* 
+     * Método que retorna todos los medicamentos que se tienen almacenados en la base de datos.
      */
     public ArrayList<Medicamentos.Medicamento> getAll() {
         misMedicamentos = null;
@@ -209,7 +241,8 @@ public class Medicinas_DB_Handler extends SQLiteOpenHelper {
         }
         return misMedicamentos;
     }
-
+ 
+    // Método que retorna el número de entradas en la BD
     public long contadorMedicamentos() {
         long contador = 0;
         SQLiteDatabase medicamentosDB = this.getReadableDatabase();
