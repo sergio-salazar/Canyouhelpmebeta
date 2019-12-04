@@ -42,6 +42,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Manejador de la base de datos y arreglo de nombre de contactos
     ContactoSQLiteHelper contactos = new ContactoSQLiteHelper(MainActivity.this);
     public String[] nombres;
 
@@ -62,29 +63,31 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        // Obtención del arreglo de nombres de los contactos
         nombres = new String[contactos.mostrarContactos().size()];
         for (int i = 0; i < contactos.mostrarContactos().size(); i++) {
             nombres[i] = contactos.mostrarContactos().get(i).getNombre();
         }
         //nombres[nombres.length] = "911";
 
-        //DESDE AQUI INICIA EL SERVICIO PASARLO AL MAIN ACTIVITY
+        // Iniciador del servicio de caídas
         DeteccionService deteccionService = new DeteccionService(getContext());
         inicioServicio = new Intent(getContext(), DeteccionService.class);
         if(!estaCorriendoServicio(deteccionService.getClass())) {
             startService(inicioServicio);
         }
 
-        //Registrando el recibidor de broadcast
+        // Registrando el recibidor de broadcast para reiniciar el servicio en caso necesario
         IntentFilter intentFilter = new IntentFilter("com.action.SERVICIO_DETENIDO");
         BroadcastReceiver reiniciadorServicio = new ReiniciadorServicio();
         registerReceiver(reiniciadorServicio, intentFilter);
 
-        //Registrando el recibidor de broadcast de caida
+        // Registrando el recibidor de broadcast de caida
         IntentFilter filterLlamadas = new IntentFilter("com.action.CAIDA");
         BroadcastReceiver caidasRecibidor = new CaidasRecibidor();
         registerReceiver(caidasRecibidor, filterLlamadas);
 
+        // Solicitando dinámicamente los permisos de llamada
         int permiso = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
         if(permiso != PackageManager.PERMISSION_GRANTED) {
             permisoLlamadas();
@@ -92,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    
-    */
+     * Método on resume, actualiza el arreglo de contactos
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -175,6 +178,11 @@ public class MainActivity extends AppCompatActivity {
                 CODIGO_SOLICITUD_PERMISO);
     }
 
+    /*
+     * Método para verificar si el servicio está corriendo. Obtiene una referencia al manejador
+     * de servicios y mediante un for, revisa si alguno de los servicios existentes coincide 
+     * con el nuestro. En caso de que así sea, regresa true.
+     */
     private boolean estaCorriendoServicio(Class<?> claseServicio) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo servicio : manager.getRunningServices(Integer.MAX_VALUE)) {
@@ -185,15 +193,18 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    // Getter del contexto de la aplicación
     public Context getContext() {
         return this;
     }
 
+    // Lanza la clase ListadoMedicamentos en caso de que se haga click en el botón correspondiente.
     public void btnMedicamentosOnClick(View view) {
         Intent intent = new Intent(MainActivity.this, ListadoMedicamentosActivity.class);
         startActivity(intent);
     }
 
+    // Lanza el activity Configuracionactivity en caso de que se haga click en el botón correspondiente.
     public void btnConfiguracionOnClick(View view) {
         Intent intent = new Intent(MainActivity.this, ConfiguracionActivity.class);
         startActivity(intent);
