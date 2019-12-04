@@ -1,3 +1,23 @@
+/*------------------------------------------------------------------------------------------
+:*                       INSTITUTO TECNOLOGICO DE LA LAGUNA
+:*                     INGENIERIA EN SISTEMAS COMPUTACIONALES
+:*                       GESTIÓN DE PROYECTOS DE SOFTWARE
+:*
+:*                   SEMESTRE: AGO-DIC/2019    HORA: 11-12 HRS
+:*
+:*                       Activity para capturar/actualizar medicamentos
+:*
+:*  Archivo     : CapturaMedicamentosActivity.java
+:*  Autor       : PPS
+:*  Compilador  : Android Studio 3.1.3
+:*  Descripción : Activity que sirve para actualizar/capturar nuevos medicamentos. Es un activity
+:*  sencillo. Mediante el Bundle sabe que operación debe realizar, y popula los campos o los deja
+:*  vacíos acorde con la operación.
+:*  de teléfono. 
+:*  Fecha       Modificó             Motivo
+:*==========================================================================================
+:*  04/012/2019 Iván García Moreno   Comentarios
+:*------------------------------------------------------------------------------------------*/
 package mx.edu.itl.c16130842.canyouhelpmebeta;
 
 import android.content.DialogInterface;
@@ -29,6 +49,12 @@ public class CapturaMedicamentosActivity extends AppCompatActivity implements Ad
     Intent i;
     Bundle bundle;
 
+    /*
+     * Método para realizar el onCreate. Obtiene referencias a los campos, inicializa los
+     * datos del spinner y mediante el objeto Bundle revisa que tipo de operación es.
+     * En caso de que sea una operación de actualización (2) se llama a popularCampos
+     * que consulta la base de datos y rellena los campos.
+     */ 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +123,11 @@ public class CapturaMedicamentosActivity extends AppCompatActivity implements Ad
             Toast.makeText(this, "Ha habido un problema con la aplicación", Toast.LENGTH_LONG);
         }
     }
-
+    
+    /*
+     * Método para guardar lo smedicamentos. Obtiene los datos y llama al método correspondiente
+     * en la clase.
+     */
     private void salvarMedicamento() {
         String nombreMedicamento = edNombre.getText().toString();
         int dosisMedicamento = Integer.parseInt(edDosis.getText().toString());
@@ -109,8 +139,10 @@ public class CapturaMedicamentosActivity extends AppCompatActivity implements Ad
                 esPrioritario, diasDeToma);
     }
 
-    // Método para actualizar los medicamentos desde la clase Medicamentos,
-    // recibe todos los parámetros de un medicamento
+    /*
+     * Método para actualizar los medicamentos. Obtiene los datos y llama al método correspondiente
+     * de la clase.
+     */
     private void actualizarMedicamento() {
         double dosis = Double.valueOf(edDosis.getText().toString());
         Medicamentos.ActualizarMedicamento(bundle.getInt("POS"),
@@ -123,8 +155,10 @@ public class CapturaMedicamentosActivity extends AppCompatActivity implements Ad
         );
     }
 
-    //Escuchador de eventos del cbPrioritario, notifica en caso de que seleccione un medicamento
-    //como urgente
+    /*
+     * Escuchador de eventos del comboBox prioritario. Se activa en caso de que se detecte un click sobre el 
+     * comboBox, y notifica al usuario acerca del alcance de su decisión.
+     */
     public void cbPrioritarioOnClick(View v) {
         if(cbPrioritario.isSelected()) {
             cbPrioritario.setSelected(false);
